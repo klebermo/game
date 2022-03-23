@@ -3,9 +3,7 @@
 
 #include "World.h"
 #include "Shape.h"
-#include "Character.h"
-#include "InputKeyboard.h"
-#include "InputMouse.h"
+#include "Input.h"
 
 #include <iostream>
 using namespace std;
@@ -20,7 +18,6 @@ class Renderer {
 protected:
   World world;
   Shape* shapes;
-  Character * characters;
   Input * input;
 public:
   Renderer();
