@@ -2,6 +2,9 @@
 #define INPUT_H
 
 class Input {
+protected:
+  //
+public:
   //
 };
 

@@ -1,12 +1,6 @@
 #ifndef SURFACE_H
 #define SURFACE_H
 
-#include <iostream>
-using namespace std;
-
-#include <string>
-using namespace std;
-
 #include "Renderer.h"
 
 class Surface {
