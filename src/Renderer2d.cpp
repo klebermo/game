@@ -7,3 +7,7 @@ Renderer2d::Renderer2d() {
 Renderer2d::~Renderer2d() {
   //
 }
+
+void Renderer2d::drawFrame() {
+  world.draw();
+}

@@ -8,16 +8,13 @@ protected:
   SDL_Window* window;
 	SDL_Surface* surface;
   SDL_GLContext context;
-  Renderer renderer;
+  Renderer* renderer;
 public:
   Surface();
   Surface(string windows_title);
   ~Surface();
 
-  void loop();
-
-  Renderer getRenderer();
-  void setRenderer(Renderer renderer);
+  virtual void loop() = 0;
 };
 
 #endif //SURFACE_H

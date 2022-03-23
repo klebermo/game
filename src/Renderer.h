@@ -18,12 +18,12 @@ class Renderer {
 protected:
   World world;
   Shape* shapes;
-  Input * input;
+  Input* input;
 public:
   Renderer();
   ~Renderer();
-  void drawFrame();
-  void surfaceChanged(int width, int height);
+  
+  virtual void drawFrame() = 0;
 };
 
 #endif //RENDERER_H

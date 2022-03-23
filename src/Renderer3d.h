@@ -9,6 +9,8 @@ private:
 public:
   Renderer3d();
   ~Renderer3d();
+
+  void drawFrame();
 };
 
 #endif //RENDERER3D_H

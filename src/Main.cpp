@@ -5,7 +5,6 @@ int main(int argc, char ** argv) {
     return 0;
   } else {
     Surface * view = new Surface2d();
-    view->setRenderer(Renderer());
     view->loop();
   }
   SDL_Quit();

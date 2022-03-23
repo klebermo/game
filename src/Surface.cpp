@@ -37,16 +37,3 @@ Surface::~Surface() {
   SDL_DestroyWindow(window);
   SDL_GL_DeleteContext(context);
 }
-
-void Surface::loop() {
-  renderer.drawFrame();
-  SDL_GL_SwapWindow(window);
-}
-
-Renderer Surface::getRenderer() {
-  return this->renderer;
-}
-
-void Surface::setRenderer(Renderer renderer) {
-  this->renderer = renderer;
-}

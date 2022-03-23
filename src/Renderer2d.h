@@ -9,6 +9,8 @@ private:
 public:
   Renderer2d();
   ~Renderer2d();
+
+  void drawFrame();
 };
 
 #endif //RENDERER2D_H

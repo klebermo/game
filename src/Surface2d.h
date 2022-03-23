@@ -10,6 +10,8 @@ public:
   Surface2d();
   Surface2d(string windows_title);
   ~Surface2d();
+
+  void loop();
 };
 
 #endif //SURFACE2D_H
