@@ -4,9 +4,9 @@ int main(int argc, char ** argv) {
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     return 0;
   } else {
-    Surface * surface = new Surface2d();
-    surface->setRenderer(Renderer());
-    surface->loop();
+    Surface * view = new Surface2d();
+    view->setRenderer(Renderer());
+    view->loop();
   }
   SDL_Quit();
   return 1;
