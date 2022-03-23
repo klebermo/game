@@ -1,4 +1,4 @@
-all: codec
+all: game
 
 Surface.o: src/Surface.cpp
 	g++ -g -c src/Surface.cpp -o build/Surface.o
@@ -30,7 +30,7 @@ World.o:
 Main.o: src/Main.cpp
 	g++ -g -c src/Main.cpp -o build/Main.o
 
-codec: Main.o Surface.o Surface2d.o Surface3d.o Renderer.o Renderer2d.o Renderer3d.o World.o Shape.o Input.o
+game: Main.o Surface.o Surface2d.o Surface3d.o Renderer.o Renderer2d.o Renderer3d.o World.o Shape.o Input.o
 	g++ -g -o release/game build/Main.o build/Surface.o build/Surface2d.o build/Surface3d.o build/Renderer.o build/Renderer2d.o build/Renderer3d.o build/World.o build/Shape.o build/Input.o -lSDL2 -lGL -lGLEW
 
 clean:
