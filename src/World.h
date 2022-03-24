@@ -1,18 +1,19 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#define GLEW_STATIC
-#include <GL/glew.h>
+#include "Shape.h"
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
-
-class World {
+class World : public Shape {
 private:
   //
 public:
   World();
   ~World();
+
+  void draw();
+  vector<float> vertices();
+  string vertexShaderCode();
+  string fragmentShaderCode();
 };
 
 #endif //WORLD_H

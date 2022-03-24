@@ -15,7 +15,6 @@ Surface2d::~Surface2d() {
 }
 
 void Surface2d::loop() {
-  this->renderer = new Renderer2d();
-  renderer->drawFrame(this->window);
-  SDL_GL_SwapWindow(window);
+  Renderer2d renderer;
+  renderer.drawFrame(this->window);
 }
