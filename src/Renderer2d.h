@@ -10,7 +10,7 @@ public:
   Renderer2d();
   ~Renderer2d();
 
-  void drawFrame();
+  void drawFrame(SDL_Window * window);
 };
 
 #endif //RENDERER2D_H

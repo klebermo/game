@@ -8,6 +8,6 @@ Renderer3d::~Renderer3d() {
   //
 }
 
-void Renderer3d::drawFrame() {
-  world.draw();
+void Renderer3d::drawFrame(SDL_Window * window) {
+  //
 }

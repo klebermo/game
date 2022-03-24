@@ -9,17 +9,10 @@
 
 class Shape {
 protected:
-  GLuint vao;
-  GLuint vbo;
-  GLuint vertexShader;
-  GLuint fragmentShader;
-  GLuint shaderProgram;
-
-  GLuint loadShader(GLuint type, const GLchar* shaderCode);
+  //
 public:
   Shape();
   ~Shape();
-  virtual void draw() = 0;
 };
 
 #endif //SHAPE_H

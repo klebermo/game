@@ -16,6 +16,6 @@ Surface3d::~Surface3d() {
 
 void Surface3d::loop() {
   this->renderer = new Renderer3d();
-  renderer->drawFrame();
+  renderer->drawFrame(this->window);
   SDL_GL_SwapWindow(window);
 }

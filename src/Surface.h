@@ -6,8 +6,9 @@
 class Surface {
 protected:
   SDL_Window* window;
-	SDL_Surface* surface;
   SDL_GLContext context;
+	SDL_Surface* surface;
+
   Renderer* renderer;
 public:
   Surface();

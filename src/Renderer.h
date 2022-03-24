@@ -22,8 +22,9 @@ protected:
 public:
   Renderer();
   ~Renderer();
-  
-  virtual void drawFrame() = 0;
+
+  virtual void drawFrame(SDL_Window * window) = 0;
+  GLuint loadShader(GLuint type, const GLchar* shaderCode);
 };
 
 #endif //RENDERER_H
