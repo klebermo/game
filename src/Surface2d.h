@@ -7,11 +7,10 @@ class Surface2d : public Surface {
 private:
   //
 public:
-  Surface2d();
-  Surface2d(string windows_title);
+  Surface2d(string windows_title, int width, int height);
   ~Surface2d();
 
-  void loop();
+  void loop(float * array);
 };
 
 #endif //SURFACE2D_H

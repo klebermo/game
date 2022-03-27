@@ -8,7 +8,7 @@ Renderer3d::~Renderer3d() {
   //
 }
 
-void Renderer3d::drawFrame(SDL_Window * window) {
+void Renderer3d::drawFrame(SDL_Window * window, GLfloat * vertices) {
   SDL_GLContext context = SDL_GL_CreateContext(window);
 
   glewExperimental = GL_TRUE;
@@ -23,7 +23,7 @@ void Renderer3d::drawFrame(SDL_Window * window) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    this->world = new World();
+    this->world = new World(vertices);
     world->draw();
 
     SDL_GL_SwapWindow(window);

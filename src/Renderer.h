@@ -14,7 +14,7 @@ public:
   Renderer();
   ~Renderer();
 
-  virtual void drawFrame(SDL_Window * window) = 0;
+  virtual void drawFrame(SDL_Window * window, GLfloat * vertices) = 0;
 };
 
 #endif //RENDERER_H

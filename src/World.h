@@ -3,11 +3,13 @@
 
 #include "Shape.h"
 
+#include "netpbm.h"
+
 class World : public Shape {
 private:
-  //
+  vector<float> vertexList;
 public:
-  World();
+  World(GLfloat * vertices);
   ~World();
 
   void draw();

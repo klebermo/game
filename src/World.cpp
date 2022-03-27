@@ -1,6 +1,8 @@
 #include "World.h"
 
-World::World() {
+World::World(GLfloat * vertices) {
+  this->vertexList = vector<float>(vertices, vertices + sizeof(vertices) / sizeof(float));
+
   // Create Vertex Array Object
   glGenVertexArrays(1, &vao);
   glBindVertexArray(vao);
@@ -47,12 +49,7 @@ void World::draw() {
 }
 
 vector<float> World::vertices() {
-  GLfloat vertices[] = {
-      0.0f, 0.5f,
-      0.5f, -0.5f,
-      -0.5f, -0.5f
-  };
-  return vector<float>(vertices, vertices + sizeof(vertices) / sizeof(float));
+  return vertexList;
 }
 
 string World::vertexShaderCode() {

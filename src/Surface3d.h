@@ -7,11 +7,10 @@ class Surface3d : public Surface {
 private:
   //
 public:
-  Surface3d();
-  Surface3d(string windows_title);
+  Surface3d(string windows_title, int width, int height);
   ~Surface3d();
 
-  void loop();
+  void loop(float * array);
 };
 
 #endif //SURFACE3D_H

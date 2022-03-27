@@ -10,7 +10,7 @@ public:
   Renderer2d();
   ~Renderer2d();
 
-  void drawFrame(SDL_Window * window);
+  void drawFrame(SDL_Window * window, GLfloat * vertices);
 };
 
 #endif //RENDERER2D_H

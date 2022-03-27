@@ -6,12 +6,13 @@
 class Surface {
 protected:
   SDL_Window* window;
+  int width;
+  int height;
 public:
-  Surface();
-  Surface(string windows_title);
+  Surface(string windows_title, int width, int height);
   ~Surface();
 
-  virtual void loop() = 0;
+  virtual void loop(float * array) = 0;
 };
 
 #endif //SURFACE_H
