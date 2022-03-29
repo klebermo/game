@@ -1,7 +1,9 @@
 #include "World.h"
 
 World::World(GLfloat * vertices) {
-  this->vertexList = vector<float>(vertices, vertices + sizeof(vertices) / sizeof(float));
+  size_t len = sizeof(vertices) / sizeof(float);
+  for(int i=0; i<len; i++)
+    this->vertexList.push_back(vertices[i]);
 
   // Create Vertex Array Object
   glGenVertexArrays(1, &vao);
@@ -38,7 +40,7 @@ void World::draw() {
 
   // Get the location of the color uniform
   GLint uniColor = glGetUniformLocation(mProgram, "triangleColor");
-  glUniform3f(uniColor, 2.0f, 0.0f, 0.0f);
+  glUniform3f(uniColor, 1.0f, 1.0f, 1.0f);
 
   // Clear the screen to black
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
