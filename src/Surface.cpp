@@ -8,9 +8,17 @@ Surface::Surface(string windows_title, int width, int height) {
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
-  window = SDL_CreateWindow( "...", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->width, this->height, SDL_WINDOW_OPENGL );
+  window = SDL_CreateWindow( windows_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->width, this->height, SDL_WINDOW_OPENGL );
 }
 
 Surface::~Surface() {
   SDL_DestroyWindow(window);
+}
+
+Renderer * Surface::getRenderer() {
+  return this->renderer;
+}
+
+void Surface::setRenderer(Renderer * value) {
+  this->renderer = value;
 }

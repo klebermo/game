@@ -10,7 +10,7 @@ public:
   Surface3d(string windows_title, int width, int height);
   ~Surface3d();
 
-  void loop(float * array);
+  void loop();
 };
 
 #endif //SURFACE3D_H

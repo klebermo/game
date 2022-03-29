@@ -10,7 +10,7 @@ public:
   Surface2d(string windows_title, int width, int height);
   ~Surface2d();
 
-  void loop(float * array);
+  void loop();
 };
 
 #endif //SURFACE2D_H

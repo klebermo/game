@@ -13,13 +13,17 @@ int main(int argc, char ** argv) {
   } else {
     Bitmap bitmap;
     bitmap.read_file(argv[1]);
+
     int width = bitmap.getWidth(), height = bitmap.getHeight();
     float * vertices = bitmap.toArray();
+
     Surface * view = new Surface2d("image", width, height);
-    view->loop(vertices);
+    view->getRenderer()->setWorld(new World(vertices));
+    view->loop();
+
     delete vertices;
+    SDL_Quit();
   }
 
-  SDL_Quit();
   return 1;
 }

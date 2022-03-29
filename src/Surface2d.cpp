@@ -10,7 +10,7 @@ Surface2d::~Surface2d() {
   //
 }
 
-void Surface2d::loop(float * array) {
+void Surface2d::loop() {
   Renderer2d renderer;
-  renderer.drawFrame(this->window, array);
+  renderer.drawFrame(this->window);
 }
