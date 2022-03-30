@@ -22,3 +22,11 @@ Renderer * Surface::getRenderer() {
 void Surface::setRenderer(Renderer * value) {
   this->renderer = value;
 }
+
+float * Surface::getVertices() {
+  return this->vertices;
+}
+
+void Surface::setVertices(float * values) {
+  this->vertices = values;
+}

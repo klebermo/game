@@ -11,6 +11,5 @@ Surface3d::~Surface3d() {
 }
 
 void Surface3d::loop() {
-  Renderer3d renderer;
-  renderer.drawFrame(this->window);
+  this->renderer->drawFrame(this->window, this->width, this->height, this->vertices);
 }

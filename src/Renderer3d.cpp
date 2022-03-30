@@ -8,7 +8,7 @@ Renderer3d::~Renderer3d() {
   //
 }
 
-void Renderer3d::drawFrame(SDL_Window * window) {
+void Renderer3d::drawFrame(SDL_Window * window, int width, int height, float * vertices) {
   SDL_GLContext context = SDL_GL_CreateContext(window);
 
   glewExperimental = GL_TRUE;

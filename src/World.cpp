@@ -1,26 +1,27 @@
 #include "World.h"
 
-World::World(GLfloat * vertices) {
-  size_t len = sizeof(vertices) / sizeof(float);
-  for(int i=0; i<len; i++)
-    this->vertexList.push_back(vertices[i]);
+World::World() {
+  //
+}
 
+void World::init() {
   // Create Vertex Array Object
-  glGenVertexArrays(1, &vao);
+  glGenVertexArrays(1, &this->vao);
   glBindVertexArray(vao);
 
   // Create a Vertex Buffer Object and copy the vertex data to it
-  glGenBuffers(1, &vbo);
+  glGenBuffers(1, &this->vbo);
 
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, this->vertices().size() * sizeof(float), this->vertices().data(), GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, this->getVertexList().size() * sizeof(float), this->getVertexList().data(), GL_STATIC_DRAW);
 
-  vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderCode().c_str());
-  fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderCode().c_str());
+  vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderCode());
+  fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderCode());
 
   mProgram = glCreateProgram();
   glAttachShader(mProgram, vertexShader);
   glAttachShader(mProgram, fragmentShader);
+  glBindFragDataLocation(mProgram, 0, "outColor");
   glLinkProgram(mProgram);
 }
 
@@ -28,49 +29,60 @@ World::~World() {
   glDeleteProgram(this->mProgram);
   glDeleteShader(this->fragmentShader);
   glDeleteShader(this->vertexShader);
+  glDeleteBuffers(1, &this->vbo);
+  glDeleteVertexArrays(1, &this->vao);
+}
+
+vector<float> World::getVertexList() {
+  return this->vertexList;
+}
+
+void World::setVertexList(float * values, int size) {
+  for(int i=0; i<size; i++)
+    this->vertexList.push_back(values[i]);
 }
 
 void World::draw() {
   glUseProgram(this->mProgram);
 
   // Specify the layout of the vertex data
-  GLint posAttrib = glGetAttribLocation(mProgram, "position");
+  GLint posAttrib = glGetAttribLocation(this->mProgram, "position");
   glEnableVertexAttribArray(posAttrib);
-  glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 0, 0);
+  glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), 0);
 
   // Get the location of the color uniform
-  GLint uniColor = glGetUniformLocation(mProgram, "triangleColor");
-  glUniform3f(uniColor, 1.0f, 1.0f, 1.0f);
+  GLint colAttrib = glGetAttribLocation(this->mProgram, "color");
+  glEnableVertexAttribArray(colAttrib);
+  glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
 
   // Clear the screen to black
   glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
 
   // Draw a triangle from the 3 vertices
-  glDrawArrays(GL_TRIANGLES, 0, 3);
+  glDrawArrays(GL_POINTS, 0, this->getVertexList().size());
 }
 
-vector<float> World::vertices() {
-  return vertexList;
-}
-
-string World::vertexShaderCode() {
+const GLchar * World::vertexShaderCode() {
   const GLchar* vertexSource =
-      "#version 150 core\n"
-      "in vec2 position;"
-      "void main() {"
-      "   gl_Position = vec4(position, 0.0, 1.0);"
-      "}";
-  return string(vertexSource);
+  "#version 150 core\n"
+  "in vec2 position;"
+  "in vec3 color;"
+  "out vec3 Color;"
+  "void main() {"
+  "   Color = color;"
+  "   gl_Position = vec4(position, 0.0, 1.0);"
+  "}";
+  return vertexSource;
 }
 
-string World::fragmentShaderCode() {
+const GLchar * World::fragmentShaderCode() {
   const GLchar* fragmentSource =
-      "#version 150 core\n"
-      "out vec4 outColor;"
-      "uniform vec3 triangleColor;"
-      "void main() {"
-      "   outColor = vec4(triangleColor, 1.0);"
-      "}";
-  return string(fragmentSource);
+  "#version 150 core\n"
+  "in vec3 Color;"
+  "out vec4 outColor;"
+  "void main() {"
+  "   outColor = vec4(Color, 1.0);"
+  "}";
+  return fragmentSource;
 }

@@ -11,6 +11,5 @@ Surface2d::~Surface2d() {
 }
 
 void Surface2d::loop() {
-  Renderer2d renderer;
-  renderer.drawFrame(this->window);
+  this->renderer->drawFrame(this->window, this->width, this->height, this->vertices);
 }

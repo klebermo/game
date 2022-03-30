@@ -11,7 +11,7 @@ Renderer2d::~Renderer2d() {
   //
 }
 
-void Renderer2d::drawFrame(SDL_Window * window) {
+void Renderer2d::drawFrame(SDL_Window * window, int width, int height, float * vertices) {
   SDL_GLContext context = SDL_GL_CreateContext(window);
 
   glewExperimental = GL_TRUE;
@@ -23,6 +23,9 @@ void Renderer2d::drawFrame(SDL_Window * window) {
       if (input.getEvent().type == SDL_KEYUP && input.getEvent().key.keysym.sym == SDLK_ESCAPE) break;
     }
 
+    World * world = new World();
+    world->setVertexList(vertices, 5*(width*height));
+    world->init();
     world->draw();
 
     SDL_GL_SwapWindow(window);

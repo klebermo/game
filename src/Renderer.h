@@ -2,7 +2,6 @@
 #define RENDERER_H
 
 #include "World.h"
-#include "Shape.h"
 #include "Input.h"
 
 class Renderer {
@@ -15,7 +14,7 @@ public:
   ~Renderer();
 
   World * getWorld();
-  void setWorld(World * value);
+  void setWorld(World * world);
 
   vector<shared_ptr<Shape>> getShapes();
   void setShapes(vector<shared_ptr<Shape>> values);
@@ -23,7 +22,7 @@ public:
   Input getInput();
   void setInput(Input value);
 
-  virtual void drawFrame(SDL_Window * window) = 0;
+  virtual void drawFrame(SDL_Window * window, int width, int height, float * vertices) = 0;
 };
 
 #endif //RENDERER_H

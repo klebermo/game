@@ -33,9 +33,8 @@ public:
   ~Shape();
 
   virtual void draw() = 0;
-  virtual vector<float> vertices() = 0;
-  virtual string vertexShaderCode() = 0;
-  virtual string fragmentShaderCode() = 0;
+  virtual const GLchar * vertexShaderCode() = 0;
+  virtual const GLchar * fragmentShaderCode() = 0;
 };
 
 #endif //SHAPE_H

@@ -9,13 +9,16 @@ class World : public Shape {
 private:
   vector<float> vertexList;
 public:
-  World(GLfloat * vertices);
+  World();
   ~World();
 
+  vector<float> getVertexList();
+  void setVertexList(float * values, int size);
+
+  void init();
   void draw();
-  vector<float> vertices();
-  string vertexShaderCode();
-  string fragmentShaderCode();
+  const GLchar * vertexShaderCode();
+  const GLchar * fragmentShaderCode();
 };
 
 #endif //WORLD_H

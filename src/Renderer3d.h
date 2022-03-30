@@ -10,7 +10,7 @@ public:
   Renderer3d();
   ~Renderer3d();
 
-  void drawFrame(SDL_Window * window);
+  void drawFrame(SDL_Window * window, int width, int height, float * vertices);
 };
 
 #endif //RENDERER3D_H
