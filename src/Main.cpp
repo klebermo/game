@@ -12,7 +12,7 @@ int main(int argc, char ** argv) {
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     return 0;
   } else {
-    Graymap bitmap;
+    Bitmap bitmap;
     bitmap.read_file(argv[1]);
 
     int width = bitmap.getWidth(), height = bitmap.getHeight();
