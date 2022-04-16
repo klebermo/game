@@ -8,19 +8,19 @@ Renderer::~Renderer() {
   //
 }
 
-World * Renderer::getWorld() {
-  return this->world;
+Image * Renderer::getImage() {
+  return this->image;
 }
 
-void Renderer::setWorld(World * value) {
-  this->world = value;
+void Renderer::setImage(Image * value) {
+  this->image = value;
 }
 
-vector<shared_ptr<Shape>> Renderer::getShapes() {
+vector<shared_ptr<Shape2d>> Renderer::getShapes() {
   return this->shapes;
 }
 
-void Renderer::setShapes(vector<shared_ptr<Shape>> values) {
+void Renderer::setShapes(vector<shared_ptr<Shape2d>> values) {
   this->shapes = values;
 }
 

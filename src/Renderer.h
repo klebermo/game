@@ -1,23 +1,23 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-#include "World.h"
+#include "Image.h"
 #include "Input.h"
 
 class Renderer {
 protected:
-  World * world;
-  vector<shared_ptr<Shape>> shapes;
+  Image * image;
+  vector<shared_ptr<Shape2d>> shapes;
   Input input;
 public:
   Renderer();
   ~Renderer();
 
-  World * getWorld();
-  void setWorld(World * world);
+  Image * getImage();
+  void setImage(Image * image);
 
-  vector<shared_ptr<Shape>> getShapes();
-  void setShapes(vector<shared_ptr<Shape>> values);
+  vector<shared_ptr<Shape2d>> getShapes();
+  void setShapes(vector<shared_ptr<Shape2d>> values);
 
   Input getInput();
   void setInput(Input value);

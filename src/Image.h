@@ -1,16 +1,16 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "Shape.h"
+#include "Shape2d.h"
 
 #include "netpbm.h"
 
-class World : public Shape {
+class Image : public Shape2d {
 private:
   vector<float> vertexList;
 public:
-  World();
-  ~World();
+  Image();
+  ~Image();
 
   vector<float> getVertexList();
   void setVertexList(float * values, int size);

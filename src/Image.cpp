@@ -1,10 +1,10 @@
-#include "World.h"
+#include "Image.h"
 
-World::World() {
+Image::Image() {
   //
 }
 
-void World::init() {
+void Image::init() {
   // Create Vertex Array Object
   glGenVertexArrays(1, &this->vao);
   glBindVertexArray(vao);
@@ -25,7 +25,7 @@ void World::init() {
   glLinkProgram(mProgram);
 }
 
-World::~World() {
+Image::~Image() {
   glDeleteProgram(this->mProgram);
   glDeleteShader(this->fragmentShader);
   glDeleteShader(this->vertexShader);
@@ -33,16 +33,16 @@ World::~World() {
   glDeleteVertexArrays(1, &this->vao);
 }
 
-vector<float> World::getVertexList() {
+vector<float> Image::getVertexList() {
   return this->vertexList;
 }
 
-void World::setVertexList(float * values, int size) {
+void Image::setVertexList(float * values, int size) {
   for(int i=0; i<size; i++)
     this->vertexList.push_back(values[i]);
 }
 
-void World::draw() {
+void Image::draw() {
   glUseProgram(this->mProgram);
 
   // Specify the layout of the vertex data
@@ -63,7 +63,7 @@ void World::draw() {
   glDrawArrays(GL_POINTS, 0, this->getVertexList().size());
 }
 
-const GLchar * World::vertexShaderCode() {
+const GLchar * Image::vertexShaderCode() {
   const GLchar* vertexSource =
   "#version 150 core\n"
   "in vec2 position;"
@@ -76,7 +76,7 @@ const GLchar * World::vertexShaderCode() {
   return vertexSource;
 }
 
-const GLchar * World::fragmentShaderCode() {
+const GLchar * Image::fragmentShaderCode() {
   const GLchar* fragmentSource =
   "#version 150 core\n"
   "in vec3 Color;"

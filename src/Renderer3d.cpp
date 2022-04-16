@@ -20,7 +20,7 @@ void Renderer3d::drawFrame(SDL_Window * window, int width, int height, float * v
       if (input.getEvent().type == SDL_KEYUP && input.getEvent().key.keysym.sym == SDLK_ESCAPE) break;
     }
 
-    world->draw();
+    image->draw();
 
     SDL_GL_SwapWindow(window);
   }

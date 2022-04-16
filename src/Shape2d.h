@@ -1,5 +1,5 @@
-#ifndef SHAPE_H
-#define SHAPE_H
+#ifndef SHAPE2D_H
+#define SHAPE2D_H
 
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -19,7 +19,7 @@ using namespace std;
 #include <memory>
 using namespace std;
 
-class Shape {
+class Shape2d {
 protected:
   GLuint vao;
   GLuint vbo;
@@ -29,12 +29,12 @@ protected:
 
   GLuint loadShader(GLuint type, const GLchar* shaderCode);
 public:
-  Shape();
-  ~Shape();
+  Shape2d();
+  ~Shape2d();
 
   virtual void draw() = 0;
   virtual const GLchar * vertexShaderCode() = 0;
   virtual const GLchar * fragmentShaderCode() = 0;
 };
 
-#endif //SHAPE_H
+#endif //SHAPE2D_H

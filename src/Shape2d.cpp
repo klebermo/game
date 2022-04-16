@@ -1,14 +1,14 @@
-#include "Shape.h"
+#include "Shape2d.h"
 
-Shape::Shape() {
+Shape2d::Shape2d() {
   //
 }
 
-Shape::~Shape() {
+Shape2d::~Shape2d() {
   //
 }
 
-GLuint Shape::loadShader(GLuint type, const GLchar* shaderCode) {
+GLuint Shape2d::loadShader(GLuint type, const GLchar* shaderCode) {
   GLuint shader = glCreateShader(type);
   glShaderSource(shader, 1, &shaderCode, NULL);
   glCompileShader(shader);
