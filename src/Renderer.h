@@ -7,7 +7,6 @@
 class Renderer {
 protected:
   Image * image;
-  vector<shared_ptr<Shape2d>> shapes;
   Input input;
 public:
   Renderer();
@@ -15,9 +14,6 @@ public:
 
   Image * getImage();
   void setImage(Image * image);
-
-  vector<shared_ptr<Shape2d>> getShapes();
-  void setShapes(vector<shared_ptr<Shape2d>> values);
 
   Input getInput();
   void setInput(Input value);

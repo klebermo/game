@@ -23,9 +23,7 @@ void Renderer2d::drawFrame(SDL_Window * window, int width, int height, float * v
       if (input.getEvent().type == SDL_KEYUP && input.getEvent().key.keysym.sym == SDLK_ESCAPE) break;
     }
 
-    Image * image = new Image();
-    image->setVertexList(vertices, 5*(width*height));
-    image->init();
+    Image * image = new Image(vertices, 5*width*height);
     image->draw();
 
     SDL_GL_SwapWindow(window);

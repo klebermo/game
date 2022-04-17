@@ -3,20 +3,16 @@
 
 #include "Shape2d.h"
 
-#include "netpbm.h"
-
 class Image : public Shape2d {
 private:
-  vector<float> vertexList;
+  float * vertexList;
+  int size;
 public:
-  Image();
+  Image(float * values, int size);
   ~Image();
 
-  vector<float> getVertexList();
-  void setVertexList(float * values, int size);
-
-  void init();
   void draw();
+  
   const GLchar * vertexShaderCode();
   const GLchar * fragmentShaderCode();
 };

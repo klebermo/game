@@ -13,6 +13,8 @@ Surface::Surface(string windows_title, int width, int height) {
 
 Surface::~Surface() {
   SDL_DestroyWindow(window);
+  delete renderer;
+  delete vertices;
 }
 
 Renderer * Surface::getRenderer() {

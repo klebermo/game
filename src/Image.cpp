@@ -1,10 +1,8 @@
 #include "Image.h"
 
-Image::Image() {
-  //
-}
-
-void Image::init() {
+Image::Image(float * values, int size) {
+  this->vertexList = values;
+  this->size = size;
   // Create Vertex Array Object
   glGenVertexArrays(1, &this->vao);
   glBindVertexArray(vao);
@@ -13,7 +11,7 @@ void Image::init() {
   glGenBuffers(1, &this->vbo);
 
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, this->getVertexList().size() * sizeof(float), this->getVertexList().data(), GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, this->size * sizeof(float), this->vertexList, GL_STATIC_DRAW);
 
   vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderCode());
   fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderCode());
@@ -31,15 +29,6 @@ Image::~Image() {
   glDeleteShader(this->vertexShader);
   glDeleteBuffers(1, &this->vbo);
   glDeleteVertexArrays(1, &this->vao);
-}
-
-vector<float> Image::getVertexList() {
-  return this->vertexList;
-}
-
-void Image::setVertexList(float * values, int size) {
-  for(int i=0; i<size; i++)
-    this->vertexList.push_back(values[i]);
 }
 
 void Image::draw() {
@@ -60,7 +49,7 @@ void Image::draw() {
   glClear(GL_COLOR_BUFFER_BIT);
 
   // Draw a triangle from the 3 vertices
-  glDrawArrays(GL_POINTS, 0, this->getVertexList().size());
+  glDrawArrays(GL_POINTS, 0, this->size);
 }
 
 const GLchar * Image::vertexShaderCode() {

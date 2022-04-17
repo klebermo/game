@@ -3,7 +3,7 @@
 #include "Renderer3d.h"
 
 Surface3d::Surface3d(string windows_title, int width, int height) : Surface(windows_title, width, height) {
-  //
+  this->renderer = new Renderer3d();
 }
 
 Surface3d::~Surface3d() {

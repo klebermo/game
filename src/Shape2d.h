@@ -7,18 +7,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-#include <iostream>
-using namespace std;
-
-#include <string>
-using namespace std;
-
-#include <vector>
-using namespace std;
-
-#include <memory>
-using namespace std;
-
 class Shape2d {
 protected:
   GLuint vao;
