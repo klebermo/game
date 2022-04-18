@@ -1,7 +1,5 @@
 #include "Surface2d.h"
 #include "Renderer2d.h"
-#include "Surface2d.h"
-#include "Renderer3d.h"
 
 #include "netpbm.h"
 
