@@ -1,5 +1,5 @@
-export lib_netpbm_header := ../Codec/Netpbm/include
-export lib_netpbm_library := ../Codec/release
+export lib_netpbm_header := ../codec/Netpbm/include
+export lib_netpbm_library := ../codec/release
 
 all: game
 
