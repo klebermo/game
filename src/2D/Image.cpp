@@ -1,5 +1,36 @@
 #include "Image.h"
 
+const GLchar * Image::vertexShaderCode() {
+  const GLchar* vertexSource =
+  "#version 150 core\n"
+  "in vec2 position;"
+  "in vec3 color;"
+  "out vec3 Color;"
+  "void main() {"
+  "   Color = color;"
+  "   gl_Position = vec4(position, 0.0, 1.0);"
+  "}";
+  return vertexSource;
+}
+
+const GLchar * Image::fragmentShaderCode() {
+  const GLchar* fragmentSource =
+  "#version 150 core\n"
+  "in vec3 Color;"
+  "out vec4 outColor;"
+  "void main() {"
+  "   outColor = vec4(Color, 1.0);"
+  "}";
+  return fragmentSource;
+}
+
+GLuint Image::loadShader(GLuint type, const GLchar* shaderCode) {
+  GLuint shader = glCreateShader(type);
+  glShaderSource(shader, 1, &shaderCode, NULL);
+  glCompileShader(shader);
+  return shader;
+}
+
 Image::Image(float * values, int size) {
   this->vertexList = values;
   this->size = size;
@@ -52,26 +83,18 @@ void Image::draw() {
   glDrawArrays(GL_POINTS, 0, this->size);
 }
 
-const GLchar * Image::vertexShaderCode() {
-  const GLchar* vertexSource =
-  "#version 150 core\n"
-  "in vec2 position;"
-  "in vec3 color;"
-  "out vec3 Color;"
-  "void main() {"
-  "   Color = color;"
-  "   gl_Position = vec4(position, 0.0, 1.0);"
-  "}";
-  return vertexSource;
+float * Image::getVertices() {
+  return vertexList;
 }
 
-const GLchar * Image::fragmentShaderCode() {
-  const GLchar* fragmentSource =
-  "#version 150 core\n"
-  "in vec3 Color;"
-  "out vec4 outColor;"
-  "void main() {"
-  "   outColor = vec4(Color, 1.0);"
-  "}";
-  return fragmentSource;
+int Image::getWidth() {
+  return width;
+}
+
+int Image::getHeight() {
+  return height;
+}
+
+int Image::getSize() {
+  return 5*width*height;
 }

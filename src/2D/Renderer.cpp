@@ -1,17 +1,14 @@
-#include "Renderer2d.h"
+#include "Renderer.h"
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 600;
+Renderer::Renderer(Image * image) {
+  this->image = image;
+}
 
-Renderer2d::Renderer2d() {
+Renderer::~Renderer() {
   //
 }
 
-Renderer2d::~Renderer2d() {
-  //
-}
-
-void Renderer2d::drawFrame(SDL_Window * window, int width, int height, float * vertices) {
+void Renderer::drawFrame(SDL_Window * window) {
   SDL_GLContext context = SDL_GL_CreateContext(window);
 
   glewExperimental = GL_TRUE;
@@ -23,7 +20,6 @@ void Renderer2d::drawFrame(SDL_Window * window, int width, int height, float * v
       if (input.getEvent().type == SDL_KEYUP && input.getEvent().key.keysym.sym == SDLK_ESCAPE) break;
     }
 
-    Image * image = new Image(vertices, 5*width*height);
     image->draw();
 
     SDL_GL_SwapWindow(window);

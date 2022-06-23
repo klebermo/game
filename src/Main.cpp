@@ -1,5 +1,4 @@
-#include "Surface2d.h"
-#include "Renderer2d.h"
+#include "2D/Surface.h"
 
 #include "netpbm.h"
 
@@ -37,8 +36,7 @@ int main(int argc, char ** argv) {
       width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
     }
 
-    Surface * view = new Surface2d("image", width, height);
-    view->setVertices(vertices);
+    Surface * view = new Surface("image", width, height, vertices);
     view->loop();
 
     delete vertices;

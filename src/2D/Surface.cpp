@@ -1,6 +1,6 @@
 #include "Surface.h"
 
-Surface::Surface(string windows_title, int width, int height) {
+Surface::Surface(string windows_title, int width, int height, float * vertices) {
   this->width = width;
   this->height = height;
 
@@ -9,26 +9,14 @@ Surface::Surface(string windows_title, int width, int height) {
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
   window = SDL_CreateWindow( windows_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, this->width, this->height, SDL_WINDOW_OPENGL );
+  renderer = new Renderer(new Image(vertices, width, height));
 }
 
 Surface::~Surface() {
-  SDL_DestroyWindow(window);
-  delete renderer;
-  delete vertices;
+    SDL_DestroyWindow(window);
+    delete renderer;
 }
 
-Renderer * Surface::getRenderer() {
-  return this->renderer;
-}
-
-void Surface::setRenderer(Renderer * value) {
-  this->renderer = value;
-}
-
-float * Surface::getVertices() {
-  return this->vertices;
-}
-
-void Surface::setVertices(float * values) {
-  this->vertices = values;
+void Surface::loop() {
+  this->renderer->drawFrames(window);
 }

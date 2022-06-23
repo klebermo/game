@@ -1,14 +1,14 @@
-#include "Renderer3d.h"
+#include "Renderer.h"
 
-Renderer3d::Renderer3d() {
+Renderer::Renderer() {
   //
 }
 
-Renderer3d::~Renderer3d() {
+Renderer::~Renderer() {
   //
 }
 
-void Renderer3d::drawFrame(SDL_Window * window, int width, int height, float * vertices) {
+void Renderer::drawFrame(SDL_Window * window) {
   SDL_GLContext context = SDL_GL_CreateContext(window);
 
   glewExperimental = GL_TRUE;
@@ -20,7 +20,7 @@ void Renderer3d::drawFrame(SDL_Window * window, int width, int height, float * v
       if (input.getEvent().type == SDL_KEYUP && input.getEvent().key.keysym.sym == SDLK_ESCAPE) break;
     }
 
-    image->draw();
+    //
 
     SDL_GL_SwapWindow(window);
   }
