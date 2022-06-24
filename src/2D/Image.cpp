@@ -31,9 +31,11 @@ GLuint Image::loadShader(GLuint type, const GLchar* shaderCode) {
   return shader;
 }
 
-Image::Image(float * values, int size) {
+Image::Image(float * values, int width, int height) {
   this->vertexList = values;
-  this->size = size;
+  this->width = width;
+  this->height = height;
+
   // Create Vertex Array Object
   glGenVertexArrays(1, &this->vao);
   glBindVertexArray(vao);
@@ -42,7 +44,7 @@ Image::Image(float * values, int size) {
   glGenBuffers(1, &this->vbo);
 
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, this->size * sizeof(float), this->vertexList, GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, this->size() * sizeof(float), this->vertexList, GL_STATIC_DRAW);
 
   vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderCode());
   fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderCode());
@@ -80,7 +82,7 @@ void Image::draw() {
   glClear(GL_COLOR_BUFFER_BIT);
 
   // Draw a triangle from the 3 vertices
-  glDrawArrays(GL_POINTS, 0, this->size);
+  glDrawArrays(GL_POINTS, 0, this->size());
 }
 
 float * Image::getVertices() {
@@ -95,6 +97,6 @@ int Image::getHeight() {
   return height;
 }
 
-int Image::getSize() {
+int Image::size() {
   return 5*width*height;
 }

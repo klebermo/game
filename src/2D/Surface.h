@@ -5,15 +5,21 @@
 
 class Surface {
 private:
-  SDL_Window* window;
+  Display * display;
+	Screen * screen;
+	int screenId;
+  Window window;
+
   int width;
   int height;
   Renderer * renderer;
 public:
-  Surface(string windows_title, int width, int height, float * vertices);
+  Surface(string windows_title, int width, int height);
   ~Surface();
+
+  Renderer * getRenderer();
 
   void loop();
 };
 
-#endif //SURFACE2D_H
+#endif

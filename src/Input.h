@@ -1,11 +1,8 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#define GLEW_STATIC
-#include <GL/glew.h>
-
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
+#include <X11/Xlib.h>
+#include <X11/keysym.h>
 
 #include <iostream>
 using namespace std;
@@ -21,13 +18,13 @@ using namespace std;
 
 class Input {
 private:
-  SDL_Event windowEvent;
+  XEvent windowEvent;
 public:
   Input();
   ~Input();
 
-  bool pollEvent();
-  SDL_Event getEvent();
+  bool pollEvent(Display * display);
+  XEvent getEvent();
 };
 
 #endif //INPUT_H

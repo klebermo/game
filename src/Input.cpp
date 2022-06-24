@@ -8,10 +8,10 @@ Input::~Input() {
   //
 }
 
-bool Input::pollEvent() {
-  return SDL_PollEvent(&windowEvent);
+bool Input::pollEvent(Display * display) {
+  return XNextEvent(display, &windowEvent);
 }
 
-SDL_Event Input::getEvent() {
+XEvent Input::getEvent() {
   return this->windowEvent;
 }

@@ -11,39 +11,36 @@ int main(int argc, char ** argv) {
     return 0;
   }
 
-  if (SDL_Init(SDL_INIT_VIDEO) >= 0) {
-    string file_name(argv[1]);
-    string extension;
-    stringstream ss(file_name);
-    while(getline(ss, extension, '.'));
+  string file_name(argv[1]);
+  string extension;
+  stringstream ss(file_name);
+  while(getline(ss, extension, '.'));
 
-    Netpbm * image;
-    int width = 0, height = 0;
-    float * vertices = NULL;
+  Netpbm * image;
+  int width = 0, height = 0;
+  float * vertices = nullptr;
 
-    if(extension == "pbm") {
-      image = new Bitmap(argv[1]);
-      width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
-    }
-
-    if(extension == "pgm") {
-      image = new Graymap(argv[1]);
-      width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
-    }
-
-    if(extension == "ppm") {
-      image = new Pixmap(argv[1]);
-      width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
-    }
-
-    Surface * view = new Surface("image", width, height, vertices);
-    view->loop();
-
-    delete vertices;
-    delete image;
-
-    SDL_Quit();
+  if(extension == "pbm") {
+    image = new Bitmap(argv[1]);
+    width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
   }
+
+  if(extension == "pgm") {
+    image = new Graymap(argv[1]);
+    width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
+  }
+
+  if(extension == "ppm") {
+    image = new Pixmap2(argv[1]);
+    width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
+  }
+
+  Surface * view = new Surface("image", width, height);
+  view->getRenderer()->add_image(vertices, width, height);
+  view->loop();
+
+  delete vertices;
+  delete image;
 
   return 1;
 }

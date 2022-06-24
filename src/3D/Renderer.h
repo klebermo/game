@@ -10,7 +10,7 @@ public:
   Renderer();
   ~Renderer();
 
-  void drawFrame(SDL_Window * window);
+  void drawFrame();
 };
 
 #endif //RENDERER3D_H

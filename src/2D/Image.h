@@ -1,11 +1,9 @@
-#ifndef WORLD_H
-#define WORLD_H
+#ifndef IMAGE_H
+#define IMAGE_H
 
 #define GLEW_STATIC
 #include <GL/glew.h>
-
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
+#include <GL/gl.h>
 
 class Image {
 private:
@@ -29,9 +27,9 @@ public:
   float * getVertices();
   int getWidth();
   int getHeight();
-  int getSize();
+  int size();
 
   void draw();
 };
 
-#endif //WORLD_H
+#endif

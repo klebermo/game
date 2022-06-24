@@ -5,7 +5,7 @@
 
 class Surface {
 private:
-  SDL_Window* window;
+  Window window;
   int width;
   int height;
   Renderer * renderer;
