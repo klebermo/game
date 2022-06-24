@@ -5,21 +5,22 @@
 
 class Surface {
 private:
-  Display * display;
-	Screen * screen;
-	int screenId;
-  Window window;
+    Display                 *dpy;
+    Window                  root;
+    GLint                   att[5] = { GLX_RGBA, GLX_DEPTH_SIZE, 24, GLX_DOUBLEBUFFER, None };
+    XVisualInfo             *vi;
+    Colormap                cmap;
+    XSetWindowAttributes    swa;
+    Window                  win;
 
-  int width;
-  int height;
-  Renderer * renderer;
+    Renderer * renderer;
 public:
-  Surface(string windows_title, int width, int height);
-  ~Surface();
+    Surface(std::string windows_title, int width, int height);
+    ~Surface();
 
-  Renderer * getRenderer();
+    Renderer * getRenderer();
 
-  void loop();
+    void loop();
 };
 
 #endif

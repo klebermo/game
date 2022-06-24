@@ -1,33 +1,47 @@
 #include "Surface.h"
 
-Surface::Surface(string windows_title, int width, int height) {
-  this->width = width;
-  this->height = height;
-  this->renderer = new Renderer();
+Surface::Surface(std::string windows_title, int width, int height) {
+  	this->renderer = new Renderer();
 
-  display = XOpenDisplay(NULL);
-	if (display == NULL) {
-		cout << "Could not open display" << endl;
-		exit(1);
-	}
-	screen = DefaultScreenOfDisplay(display);
-	screenId = DefaultScreen(display);
+    dpy = XOpenDisplay(NULL);
 
-	// Open the window
-	window = XCreateSimpleWindow(display, RootWindowOfScreen(screen), 0, 0, 640, 480, 1, BlackPixel(display, screenId), WhitePixel(display, screenId));
+    if(dpy == NULL) {
+    printf("\n\tcannot connect to X server\n\n");
+        exit(0);
+    }
+        
+    root = DefaultRootWindow(dpy);
+
+    vi = glXChooseVisual(dpy, 0, att);
+
+    if(vi == NULL) {
+        printf("\n\tno appropriate visual found\n\n");
+        exit(0);
+    } 
+    else {
+        printf("\n\tvisual %p selected\n", (void *)vi->visualid); /* %p creates hexadecimal output like in glxinfo */
+    }
+
+
+    cmap = XCreateColormap(dpy, root, vi->visual, AllocNone);
+
+    swa.colormap = cmap;
+    swa.event_mask = ExposureMask | KeyPressMask;
+
+    win = XCreateWindow(dpy, root, 0, 0, width, height, 0, vi->depth, InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
+
+    XMapWindow(dpy, win);
+    XStoreName(dpy, win, windows_title.c_str());
 }
 
 Surface::~Surface() {
-	XDestroyWindow(display, window);
-	XFree(screen);
-	XCloseDisplay(display);
   delete renderer;
-}
-
-void Surface::loop() {
-  this->renderer->drawFrame(display, window);
 }
 
 Renderer * Surface::getRenderer() {
   return this->renderer;
+}
+
+void Surface::loop() {
+  this->renderer->drawFrame(dpy, win, vi);
 }

@@ -8,31 +8,40 @@ Renderer::~Renderer() {
   //
 }
 
-void Renderer::add_image(Image * image) {
-  images.push_back(image);
+std::vector<Image> Renderer::getImages() {
+  return this->images;
 }
 
-void Renderer::add_image(float * vertices, int width, int height) {
-  std::cout << "add_image: " << width << "x" << height << std::endl;
-  Image * image = new Image(vertices, width, height);
-  std:cout << "image: " << image << std::endl;
-  images.push_back(image);
-  std::cout << "images: " << images.size() << std::endl;
-}
+void Renderer::drawFrame(Display * dpy, Window win, XVisualInfo * vi) {
+  GLXContext glc = glXCreateContext(dpy, vi, NULL, GL_TRUE);
+  glXMakeCurrent(dpy, win, glc);
 
-void Renderer::drawFrame(Display * display, Window window) {
-  KeySym escape = XKeysymToKeycode(display, XK_Escape);
+  glEnable(GL_DEPTH_TEST); 
 
   glewExperimental = GL_TRUE;
   glewInit();
 
-  while(true) {
-    if(input.pollEvent(display)) {
-      if (input.getEvent().type == KeyRelease && input.getEvent().xkey.keycode == escape) break;
-    }
+  for(int i=0; i<images.size(); i++)
+    images[i].init();
 
-    for(int i=0; i<images.size(); i++) {
-      images[i]->draw();
-    }
+  XEvent xev;
+  while(1) {
+      XNextEvent(dpy, &xev);
+      
+      if(xev.type == Expose) {
+          XWindowAttributes gwa;
+          XGetWindowAttributes(dpy, win, &gwa);
+          glViewport(0, 0, gwa.width, gwa.height);
+          for(int i=0; i<images.size(); i++)
+            images[i].draw();
+          glXSwapBuffers(dpy, win);
+      }
+      else if(xev.type == KeyPress) {
+          glXMakeCurrent(dpy, None, NULL);
+          glXDestroyContext(dpy, glc);
+          XDestroyWindow(dpy, win);
+          XCloseDisplay(dpy);
+          exit(0);
+      }
   }
 }
