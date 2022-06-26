@@ -31,5 +31,6 @@ void Renderer::drawFrame(SDL_Window * window) {
     SDL_GL_SwapWindow(window);
   }
 
+  for(int i=0; i<images.size(); i++) images[i].exit();
   SDL_GL_DeleteContext(context);
 }

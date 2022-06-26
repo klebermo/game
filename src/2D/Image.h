@@ -13,7 +13,7 @@
 
 class Image {
 private:
-    float * vertexList;
+    std::vector<float> vertexList;
     int width;
     int height;
 
@@ -41,10 +41,10 @@ private:
     "   outColor = vec4(Color, 1.0);"
     "}";
 public:
-    Image(float * values, int width, int height);
-    ~Image();
+    Image(std::vector<float> v, int w, int h);
     void init();
     void draw();
+    void exit();
     int size();
     GLuint loadShader(GLuint type, const GLchar* shaderCode);
 };

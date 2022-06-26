@@ -1,17 +1,9 @@
 #include "Image.h"
 
-Image::Image(float * values, int width, int height) {
-  this->vertexList = values;
-  this->width = width;
-  this->height = height;
-}
-
-Image::~Image() {
-  glDeleteProgram(mProgram);
-  glDeleteShader(fragmentShader);
-  glDeleteShader(vertexShader);
-  glDeleteBuffers(1, &vbo);
-  glDeleteVertexArrays(1, &vao);
+Image::Image(std::vector<float> v, int w, int h) {
+  vertexList = v;
+  width = w;
+  height = h;
 }
 
 void Image::init() {
@@ -22,7 +14,7 @@ void Image::init() {
   // Create a Vertex Buffer Object and copy the vertex data to it
   glGenBuffers(1, &vbo);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, this->size() * sizeof(float), this->vertexList, GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, size() * sizeof(float), vertexList.data(), GL_STATIC_DRAW);
 
   vertexShader = loadShader(GL_VERTEX_SHADER, vertexSource);
   fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentSource);
@@ -57,6 +49,14 @@ void Image::draw() {
 
 int Image::size() {
   return 5*width*height;
+}
+
+void Image::exit() {
+  glDeleteProgram(mProgram);
+  glDeleteShader(fragmentShader);
+  glDeleteShader(vertexShader);
+  glDeleteBuffers(1, &vbo);
+  glDeleteVertexArrays(1, &vao);
 }
 
 GLuint Image::loadShader(GLuint type, const GLchar* shaderCode) {

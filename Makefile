@@ -21,7 +21,7 @@ Main.o: src/Main.cpp
 	g++ -g -I ${sdl_header} -I ${lib_netpbm_header} -c src/Main.cpp -o build/Main.o
 
 game: Input.o Image.o Renderer.o Surface.o Main.o
-	g++ -g -fsanitize=address -L ${sdl_library} -L ${lib_netpbm_library} -o release/game2d build/Input.o build/Image.o build/Renderer.o build/Surface.o build/Main.o -lSDL2 -lSDL2main -lGL -lGLEW -lm -Wl,-rpath="./" -lnetpbm
+	g++ -g -L ${sdl_library} -L ${lib_netpbm_library} -o release/game2d build/Input.o build/Image.o build/Renderer.o build/Surface.o build/Main.o -l:libSDL2.a -l:libSDL2main.a -lGL -lGLEW -lm -Wl,-rpath="./" -lnetpbm
 
 clean:
 	rm build/*.o
