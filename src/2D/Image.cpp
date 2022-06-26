@@ -7,11 +7,11 @@ Image::Image(float * values, int width, int height) {
 }
 
 Image::~Image() {
-  glDeleteProgram(this->mProgram);
-  glDeleteShader(this->fragmentShader);
-  glDeleteShader(this->vertexShader);
-  glDeleteBuffers(1, &this->vbo);
-  glDeleteVertexArrays(1, &this->vao);
+  glDeleteProgram(mProgram);
+  glDeleteShader(fragmentShader);
+  glDeleteShader(vertexShader);
+  glDeleteBuffers(1, &vbo);
+  glDeleteVertexArrays(1, &vao);
 }
 
 void Image::init() {
@@ -35,15 +35,15 @@ void Image::init() {
 }
 
 void Image::draw() {
-  glUseProgram(this->mProgram);
+  glUseProgram(mProgram);
 
   // Specify the layout of the vertex data
-  GLint posAttrib = glGetAttribLocation(this->mProgram, "position");
+  GLint posAttrib = glGetAttribLocation(mProgram, "position");
   glEnableVertexAttribArray(posAttrib);
   glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), 0);
 
   // Get the location of the color uniform
-  GLint colAttrib = glGetAttribLocation(this->mProgram, "color");
+  GLint colAttrib = glGetAttribLocation(mProgram, "color");
   glEnableVertexAttribArray(colAttrib);
   glVertexAttribPointer(colAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void*)(2 * sizeof(GLfloat)));
 
