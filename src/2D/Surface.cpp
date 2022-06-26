@@ -1,40 +1,19 @@
 #include "Surface.h"
 
 Surface::Surface(std::string windows_title, int width, int height) {
-  	this->renderer = new Renderer();
+  this->width = width;
+  this->height = height;
+  this->renderer = new Renderer();
 
-    dpy = XOpenDisplay(NULL);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
-    if(dpy == NULL) {
-    printf("\n\tcannot connect to X server\n\n");
-        exit(0);
-    }
-        
-    root = DefaultRootWindow(dpy);
-
-    vi = glXChooseVisual(dpy, 0, att);
-
-    if(vi == NULL) {
-        printf("\n\tno appropriate visual found\n\n");
-        exit(0);
-    } 
-    else {
-        printf("\n\tvisual %p selected\n", (void *)vi->visualid); /* %p creates hexadecimal output like in glxinfo */
-    }
-
-
-    cmap = XCreateColormap(dpy, root, vi->visual, AllocNone);
-
-    swa.colormap = cmap;
-    swa.event_mask = ExposureMask | KeyPressMask;
-
-    win = XCreateWindow(dpy, root, 0, 0, width, height, 0, vi->depth, InputOutput, vi->visual, CWColormap | CWEventMask, &swa);
-
-    XMapWindow(dpy, win);
-    XStoreName(dpy, win, windows_title.c_str());
+  window = SDL_CreateWindow( windows_title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN );
 }
 
 Surface::~Surface() {
+  SDL_DestroyWindow(window);  
   delete renderer;
 }
 
@@ -43,5 +22,5 @@ Renderer * Surface::getRenderer() {
 }
 
 void Surface::loop() {
-  this->renderer->drawFrame(dpy, win, vi);
+  this->renderer->drawFrame(window);
 }

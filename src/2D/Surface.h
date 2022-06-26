@@ -5,14 +5,9 @@
 
 class Surface {
 private:
-    Display                 *dpy;
-    Window                  root;
-    GLint                   att[5] = { GLX_RGBA, GLX_DEPTH_SIZE, 24, GLX_DOUBLEBUFFER, None };
-    XVisualInfo             *vi;
-    Colormap                cmap;
-    XSetWindowAttributes    swa;
-    Window                  win;
-
+    SDL_Window* window;
+    int width;
+    int height;
     Renderer * renderer;
 public:
     Surface(std::string windows_title, int width, int height);

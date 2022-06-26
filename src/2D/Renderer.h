@@ -2,17 +2,19 @@
 #define RENDERER2D_H
 
 #include "Image.h"
+#include "../Input/Input.h"
 
 class Renderer {
 private:
     std::vector<Image> images;
+    Input input;
 public:
     Renderer();
     ~Renderer();
 
     std::vector<Image> getImages();
 
-    void drawFrame(Display * dpy, Window win, XVisualInfo * vi);
+    void drawFrame(SDL_Window * window);
 };
 
 #endif
