@@ -17,7 +17,7 @@ int main(int argc, char ** argv) {
         Netpbm * image;
         
         int width = 0, height = 0;
-        std::vector<float> vertices;
+        float * vertices;
 
         if(extension == "pbm") {
           image = new Bitmap(argv[1]);
@@ -38,6 +38,7 @@ int main(int argc, char ** argv) {
         view->getRenderer()->getImages().push_back(Image(vertices, width, height));
         view->loop();
 
+        delete vertices;
         delete image;
 
         SDL_Quit();

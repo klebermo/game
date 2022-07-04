@@ -1,9 +1,13 @@
 #include "Image.h"
 
-Image::Image(std::vector<float> v, int w, int h) {
+Image::Image(float * v, int w, int h) {
   vertexList = v;
   width = w;
   height = h;
+}
+
+Image::~Image() {
+  delete vertexList;
 }
 
 void Image::init() {
@@ -14,7 +18,7 @@ void Image::init() {
   // Create a Vertex Buffer Object and copy the vertex data to it
   glGenBuffers(1, &vbo);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
-  glBufferData(GL_ARRAY_BUFFER, size() * sizeof(float), vertexList.data(), GL_STATIC_DRAW);
+  glBufferData(GL_ARRAY_BUFFER, size() * sizeof(float), vertexList, GL_STATIC_DRAW);
 
   vertexShader = loadShader(GL_VERTEX_SHADER, vertexSource);
   fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentSource);

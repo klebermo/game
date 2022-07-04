@@ -13,7 +13,7 @@
 
 class Image {
 private:
-    std::vector<float> vertexList;
+    float * vertexList;
     int width;
     int height;
 
@@ -41,7 +41,8 @@ private:
     "   outColor = vec4(Color, 1.0);"
     "}";
 public:
-    Image(std::vector<float> v, int w, int h);
+    Image(float * v, int w, int h);
+    ~Image();
     void init();
     void draw();
     void exit();
