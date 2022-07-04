@@ -6,13 +6,15 @@
 
 class Renderer {
 private:
-    std::vector<Image> images;
+    //std::vector<Image> images;
+    Image * image;
     Input input;
 public:
     Renderer();
     ~Renderer();
 
-    std::vector<Image> getImages();
+    //std::vector<Image> getImages();
+    void setImage(Image * image);
 
     void drawFrame(SDL_Window * window);
 };

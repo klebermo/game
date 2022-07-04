@@ -35,10 +35,12 @@ int main(int argc, char ** argv) {
         }
 
         Surface * view = new Surface("image", width, height);
-        view->getRenderer()->getImages().push_back(Image(vertices, width, height));
+        Image * pic = new Image(vertices, width, height);
+        view->getRenderer()->setImage(pic);
         view->loop();
 
         delete vertices;
+        delete pic;
         delete image;
 
         SDL_Quit();
