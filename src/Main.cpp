@@ -1,6 +1,6 @@
 #include "2D/Surface.h"
 
-#include "netpbm.h"
+#include "netpbm.hpp"
 
 int main(int argc, char ** argv) {
     if (argc < 2) {
