@@ -11,37 +11,33 @@ int main(int argc, char ** argv) {
     if (SDL_Init(SDL_INIT_VIDEO) >= 0) {
         std::string file_name(argv[1]);
         std::string extension;
+        
         std::stringstream ss(file_name);
         while(getline(ss, extension, '.'));
 
-        Netpbm * image;
-        
-        int width = 0, height = 0;
-        float * vertices;
-
         if(extension == "pbm") {
-          image = new Bitmap(argv[1]);
-          width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
+            Bitmap image(file_name);
+            Surface * view = new Surface("image", image.getWidth(), image.getHeight());
+            view->getRenderer()->addImage(image.toArray(), image.getWidth(), image.getHeight());
+            view->loop();
+            delete view;
         }
-
+        
         if(extension == "pgm") {
-          image = new Graymap(argv[1]);
-          width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
+            Graymap image(file_name);
+            Surface * view = new Surface("image", image.getWidth(), image.getHeight());
+            view->getRenderer()->addImage(image.toArray(), image.getWidth(), image.getHeight());
+            view->loop();
+            delete view;
         }
 
         if(extension == "ppm") {
-          image = new Pixmap2(argv[1]);
-          width = image->getWidth(), height = image->getHeight(), vertices = image->toArray();
+            Pixmap2 image(file_name);
+            Surface * view = new Surface("image", image.getWidth(), image.getHeight());
+            view->getRenderer()->addImage(image.toArray(), image.getWidth(), image.getHeight());
+            view->loop();
+            delete view;
         }
-
-        Surface * view = new Surface("image", width, height);
-        Image * pic = new Image(vertices, width, height);
-        view->getRenderer()->setImage(pic);
-        view->loop();
-
-        delete vertices;
-        delete pic;
-        delete image;
 
         SDL_Quit();
     }

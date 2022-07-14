@@ -5,8 +5,6 @@ Surface::Surface(std::string windows_title, int width, int height) {
   this->height = height;
   this->renderer = new Renderer();
 
-  SDL_Init(SDL_INIT_VIDEO);
-
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
@@ -15,7 +13,7 @@ Surface::Surface(std::string windows_title, int width, int height) {
 }
 
 Surface::~Surface() {
-  SDL_DestroyWindow(window);  
+  SDL_DestroyWindow(window);
   delete renderer;
 }
 
