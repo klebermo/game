@@ -18,7 +18,7 @@ int main(int argc, char ** argv) {
         if(extension == "pbm") {
             Bitmap image(file_name);
             Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            view->getRenderer()->addImage(image.toArray(), image.getWidth(), image.getHeight());
+            view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
             view->loop();
             delete view;
         }
@@ -26,7 +26,7 @@ int main(int argc, char ** argv) {
         if(extension == "pgm") {
             Graymap image(file_name);
             Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            view->getRenderer()->addImage(image.toArray(), image.getWidth(), image.getHeight());
+            view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
             view->loop();
             delete view;
         }
@@ -34,9 +34,21 @@ int main(int argc, char ** argv) {
         if(extension == "ppm") {
             Pixmap2 image(file_name);
             Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            view->getRenderer()->addImage(image.toArray(), image.getWidth(), image.getHeight());
+            view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
             view->loop();
             delete view;
+        }
+
+        if(extension == "jpg" || extension == "jpeg") {
+            //
+        }
+
+        if(extension == "png") {
+            //
+        }
+
+        if(extension == "mpg" || extension == "mpeg") {
+            //
         }
 
         SDL_Quit();

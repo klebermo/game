@@ -2,21 +2,19 @@
 #define RENDERER2D_H
 
 #include "Image.h"
+#include "Animation.h"
 #include "../Input/Input.h"
 
 class Renderer {
 private:
-    std::vector<Image> images;
-    //Image * image;
+    Image * image;
     Input input;
 public:
     Renderer();
     ~Renderer();
-
-    void addImage(float * vertices, int width, int height);
-    //void setImage(Image * image);
-
+    void setImage(float * vertices, int width, int height);
     void drawFrame(SDL_Window * window);
+    void showAnimation(SDL_Window * window);
 };
 
 #endif
