@@ -1,4 +1,4 @@
-#include "Input.h"
+#include "Input.hpp"
 
 bool Input::pollEvent() {
   return SDL_PollEvent(&windowEvent);

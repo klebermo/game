@@ -1,4 +1,4 @@
-#include "Image.h"
+#include "Image.hpp"
 
 Image::Image(float * v, int w, int h) {
   vertexList = v;

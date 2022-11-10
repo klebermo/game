@@ -1,4 +1,4 @@
-#include "Surface.h"
+#include "Surface.hpp"
 
 Surface::Surface(std::string windows_title, int width, int height) {
   this->width = width;

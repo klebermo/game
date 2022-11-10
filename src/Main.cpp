@@ -1,4 +1,4 @@
-#include "2D/Surface.h"
+#include "2D/Surface.hpp"
 
 #include "netpbm.hpp"
 

@@ -1,7 +1,7 @@
 #ifndef SURFACE2D_H
 #define SURFACE2D_H
 
-#include "Renderer.h"
+#include "Renderer.hpp"
 
 class Surface {
 private:
