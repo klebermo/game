@@ -16,7 +16,7 @@ int main(int argc, char ** argv) {
         while(getline(ss, extension, '.'));
 
         if(extension == "pbm") {
-            Bitmap image(file_name);
+            Bitmap image(file_name.c_str());
             Surface * view = new Surface("image", image.getWidth(), image.getHeight());
             view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
             view->loop();
@@ -24,7 +24,7 @@ int main(int argc, char ** argv) {
         }
         
         if(extension == "pgm") {
-            Graymap image(file_name);
+            Graymap image(file_name.c_str());
             Surface * view = new Surface("image", image.getWidth(), image.getHeight());
             view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
             view->loop();
@@ -32,7 +32,7 @@ int main(int argc, char ** argv) {
         }
 
         if(extension == "ppm") {
-            Pixmap2 image(file_name);
+            Pixmap2 image(file_name.c_str());
             Surface * view = new Surface("image", image.getWidth(), image.getHeight());
             view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
             view->loop();
