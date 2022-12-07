@@ -16,29 +16,20 @@ int main(int argc, char ** argv) {
         while(getline(ss, extension, '.'));
 
         if(extension == "pbm") {
+            std::cout << "bitmap" << std::endl;
             Bitmap image;
             image.read_file(file_name);
-
-            //Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            std::cout << "width: " << image.getWidth() << std::endl;
-            std::cout << "height: " << image.getHeight() << std::endl;
-            for(int i=0; i<image.getHeight(); i++) {
-                for(int j=0; j<image.getWidth(); j++) {
-                    std::cout << image.toArray()[i*j + j];
-                }
-                std::cout << std::endl;
-            }
-            //view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
-            //view->loop();
-            //delete view;
+            Surface * view = new Surface("image", image.getWidth(), image.getHeight());
+            view->getRenderer()->setImage(image.toArray().data(), image.getWidth(), image.getHeight());
+            view->loop();
+            delete view;
         }
         
         if(extension == "pgm") {
             Graymap image;
             image.read_file(file_name);
-
             Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
+            view->getRenderer()->setImage(image.toArray().data(), image.getWidth(), image.getHeight());
             view->loop();
             delete view;
         }
@@ -46,9 +37,8 @@ int main(int argc, char ** argv) {
         if(extension == "ppm") {
             Pixmap2 image;
             image.read_file(file_name);
-
             Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            view->getRenderer()->setImage(image.toArray(), image.getWidth(), image.getHeight());
+            view->getRenderer()->setImage(image.toArray().data(), image.getWidth(), image.getHeight());
             view->loop();
             delete view;
         }
