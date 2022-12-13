@@ -16,30 +16,51 @@ int main(int argc, char ** argv) {
         while(getline(ss, extension, '.'));
 
         if(extension == "pbm") {
-            std::cout << "bitmap" << std::endl;
             Bitmap image;
             image.read_file(file_name);
-            Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            view->getRenderer()->setImage(image.toArray().data(), image.getWidth(), image.getHeight());
+            
+            float * vertices = image.toArray().data();
+            int width = image.getWidth();
+            int height = image.getHeight();
+
+            Surface * view = new Surface("image", width, height);
+            view->getRenderer()->setImage(vertices, width, height);
             view->loop();
+
+            delete vertices;
             delete view;
         }
         
         if(extension == "pgm") {
             Graymap image;
             image.read_file(file_name);
-            Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            view->getRenderer()->setImage(image.toArray().data(), image.getWidth(), image.getHeight());
+
+
+            float * vertices = image.toArray().data();
+            int width = image.getWidth();
+            int height = image.getHeight();
+
+            Surface * view = new Surface("image", width, height);
+            view->getRenderer()->setImage(vertices, width, height);
             view->loop();
+
+            delete vertices;
             delete view;
         }
 
         if(extension == "ppm") {
             Pixmap2 image;
             image.read_file(file_name);
-            Surface * view = new Surface("image", image.getWidth(), image.getHeight());
-            view->getRenderer()->setImage(image.toArray().data(), image.getWidth(), image.getHeight());
+
+            float * vertices = image.toArray().data();
+            int width = image.getWidth();
+            int height = image.getHeight();
+
+            Surface * view = new Surface("image", width, height);
+            view->getRenderer()->setImage(vertices, width, height);
             view->loop();
+
+            delete vertices;
             delete view;
         }
 
