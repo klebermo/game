@@ -19,7 +19,8 @@ int main(int argc, char ** argv) {
             Bitmap image;
             image.read_file(file_name);
             
-            float * vertices = image.toArray().data();
+            std::vector<float> vertices_vec = image.toArray();
+            float *vertices = vertices_vec.data();
             int width = image.getWidth();
             int height = image.getHeight();
 
@@ -35,8 +36,8 @@ int main(int argc, char ** argv) {
             Graymap image;
             image.read_file(file_name);
 
-
-            float * vertices = image.toArray().data();
+            std::vector<float> vertices_vec = image.toArray();
+            float *vertices = vertices_vec.data();
             int width = image.getWidth();
             int height = image.getHeight();
 
@@ -52,7 +53,8 @@ int main(int argc, char ** argv) {
             Pixmap2 image;
             image.read_file(file_name);
 
-            float * vertices = image.toArray().data();
+            std::vector<float> vertices_vec = image.toArray();
+            float *vertices = vertices_vec.data();
             int width = image.getWidth();
             int height = image.getHeight();
 
