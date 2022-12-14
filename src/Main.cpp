@@ -1,6 +1,8 @@
 #include "2D/Surface.hpp"
 
 #include "netpbm.hpp"
+#include "jpeg.h"
+#include "png.h"
 
 #include <chrono>
 #include <random>
@@ -111,11 +113,31 @@ int main(int argc, char ** argv) {
         }
 
         if(extension == "jpg" || extension == "jpeg") {
-            //
+            JPEG image;
+            image.read(file_name);
+
+            std::vector<float> vertices_vec = image.toArray();
+            float *vertices = vertices_vec.data();
+            int width = image.getWidth();
+            int height = image.getHeight();
+
+            Surface * view = new Surface("image: "+file_name, width, height);
+            view->getRenderer()->setImage(vertices, width, height);
+            view->loop();
+
+            delete vertices;
+            delete view;
         }
 
         if(extension == "png") {
-            //
+            PNG image;
+            image.read(file_name);
+
+            if(image.isAnimation()) {
+                //
+            } else {
+                //
+            }
         }
 
         if(extension == "mp4") {
