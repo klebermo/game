@@ -74,7 +74,7 @@ int main(int argc, char ** argv) {
             //
         }
 
-        if(extension == "mpg" || extension == "mpeg") {
+        if(extension == "mp4") {
             //
         }
 
