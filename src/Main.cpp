@@ -24,7 +24,7 @@ int main(int argc, char ** argv) {
             int width = image.getWidth();
             int height = image.getHeight();
 
-            Surface * view = new Surface("image", width, height);
+            Surface * view = new Surface("image: "+file_name, width, height);
             view->getRenderer()->setImage(vertices, width, height);
             view->loop();
 
@@ -41,7 +41,7 @@ int main(int argc, char ** argv) {
             int width = image.getWidth();
             int height = image.getHeight();
 
-            Surface * view = new Surface("image", width, height);
+            Surface * view = new Surface("image: "+file_name, width, height);
             view->getRenderer()->setImage(vertices, width, height);
             view->loop();
 
@@ -58,7 +58,7 @@ int main(int argc, char ** argv) {
             int width = image.getWidth();
             int height = image.getHeight();
 
-            Surface * view = new Surface("image", width, height);
+            Surface * view = new Surface("image: "+file_name, width, height);
             view->getRenderer()->setImage(vertices, width, height);
             view->loop();
 
