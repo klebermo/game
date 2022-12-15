@@ -130,14 +130,7 @@ int main(int argc, char ** argv) {
         }
 
         if(extension == "png") {
-            PNG image;
-            image.read(file_name);
-
-            if(image.isAnimation()) {
-                //
-            } else {
-                //
-            }
+            //
         }
 
         if(extension == "mp4") {
