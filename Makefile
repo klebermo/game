@@ -8,7 +8,7 @@ export png_header := ../codec/PNG/include
 export png_library := ../codec/PNG/release
 
 export cpp_flags := -Wall -pedantic -g -fsanitize=address -I ${sdl_header} -I ${lib_netpbm_header} -I ${jpeg_header} -I ${png_header} -std=c++17
-export ld_flags := -L ${sdl_library} -L ${lib_netpbm_library} -L ${jpeg_library} -L ${png_library} -l:libnetpbm.a -l:libjpeg.a -l:libpng.a -l:libSDL2.a -l:libSDL2main.a -lGL -lGLEW -lm
+export ld_flags := -L ${sdl_library} -L ${lib_netpbm_library} -L ${jpeg_library} -L ${png_library} -l:libnetpbm.a -l:libjpeg.a -l:libSDL2.a -l:libSDL2main.a -lGL -lGLEW -lm
 
 all: game
 
