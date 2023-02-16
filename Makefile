@@ -1,5 +1,3 @@
-export sdl_header := /opt/include
-export sdl_library := /opt/lib
 export lib_netpbm_header := ../codec/Netpbm/include
 export lib_netpbm_library := ../codec/release
 export jpeg_header := ../codec/JPEG/include
@@ -7,8 +5,8 @@ export jpeg_library := ../codec/JPEG/release
 export png_header := ../codec/PNG/include
 export png_library := ../codec/PNG/release
 
-export cpp_flags := -Wall -pedantic -g -fsanitize=address -I ${sdl_header} -I ${lib_netpbm_header} -I ${jpeg_header} -I ${png_header} -std=c++17
-export ld_flags := -L ${sdl_library} -L ${lib_netpbm_library} -L ${jpeg_library} -L ${png_library} -l:libnetpbm.a -l:libjpeg.a -l:libSDL2.a -l:libSDL2main.a -lGL -lGLEW -lX11 -lm
+export cpp_flags := -Wall -pedantic -g -fsanitize=address  -I ${lib_netpbm_header} -I ${jpeg_header} -I ${png_header} -std=c++17
+export ld_flags := -L ${lib_netpbm_library} -L ${jpeg_library} -L ${png_library} -Wl,-rpath './' -lnetpbm -Wl,-rpath './' -ljpeg -lSDL2 -lSDL2main -lGL -lGLEW -lX11 -lm
 
 all: game
 
