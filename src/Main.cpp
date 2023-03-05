@@ -71,7 +71,7 @@ int main(int argc, char ** argv) {
             Jfif image;
             image.read(file_name);
 
-            /*std::vector<float> vertices_vec = image.toArray();
+            std::vector<float> vertices_vec = image.toArray();
             float *vertices = vertices_vec.data();
             int width = image.getWidth();
             int height = image.getHeight();
@@ -81,7 +81,7 @@ int main(int argc, char ** argv) {
             view->loop();
 
             delete vertices;
-            delete view;*/
+            delete view;
         }
 
         if(extension == "png") {
