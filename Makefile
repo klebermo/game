@@ -1,7 +1,9 @@
 export lib_netpbm_header := ../codec/Netpbm/include
 export lib_netpbm_library := ../codec/release
+
 export jpeg_header := ../codec/JPEG/include
 export jpeg_library := ../codec/JPEG/release
+
 export png_header := ../codec/PNG/include
 export png_library := ../codec/PNG/release
 
