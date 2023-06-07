@@ -1,14 +1,11 @@
-export lib_netpbm_header := ../codec/Netpbm/include
-export lib_netpbm_library := ../codec/release
+export netpbm_header := ../codec/Netpbm/include
+export netpbm_library := ../codec/release
 
 export jpeg_header := ../codec/JPEG/include
-export jpeg_library := ../codec/JPEG/release
+export jpeg_library := ../codec/release
 
-export png_header := ../codec/PNG/include
-export png_library := ../codec/PNG/release
-
-export cpp_flags := -Wall -pedantic -g -fsanitize=address  -I ${lib_netpbm_header} -I ${jpeg_header} -I ${png_header} -std=c++17
-export ld_flags := -L ${lib_netpbm_library} -L ${jpeg_library} -L ${png_library} -Wl,-rpath './' -lnetpbm -Wl,-rpath './' -ljpeg -lSDL2 -lSDL2main -lGL -lGLEW -lX11 -lm
+export cpp_flags := -Wall -pedantic -g -fsanitize=address  -I ${netpbm_header} -I ${jpeg_header}
+export ld_flags := -L ${netpbm_library} -L ${jpeg_library} -Wl,-rpath '../../codec/release' -lnetpbm -Wl,-rpath '../../codec/release' -ljpeg -lSDL2 -lSDL2main -lGL -lGLEW -lX11 -lm
 
 all: game
 
