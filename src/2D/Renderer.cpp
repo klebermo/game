@@ -12,14 +12,6 @@ void Renderer::setImage(float * vertices, int width, int height) {
   image = new Image(vertices, width, height);
 }
 
-void Renderer::setVideo() {
-  //
-}
-
-void Renderer::setAnimation() {
-  //
-}
-
 void Renderer::drawFrame(SDL_Window * window) {
   SDL_GLContext context = SDL_GL_CreateContext(window);
 
@@ -42,12 +34,4 @@ void Renderer::drawFrame(SDL_Window * window) {
   image->exit();
 
   SDL_GL_DeleteContext(context);
-}
-
-void Renderer::playVideo(SDL_Window * window) {
-  //
-}
-
-void Renderer::showAnimation(SDL_Window * window) {
-  //
 }

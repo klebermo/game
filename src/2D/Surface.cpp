@@ -17,10 +17,6 @@ Surface::~Surface() {
   delete renderer;
 }
 
-Renderer * Surface::getRenderer() {
-  return this->renderer;
-}
-
 void Surface::loop() {
-  this->renderer->drawFrame(window);
+  //
 }
