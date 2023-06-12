@@ -7,16 +7,25 @@ export jpeg_library := ../codec/release
 export cpp_flags := -Wall -pedantic -g -fsanitize=address  -I ${netpbm_header} -I ${jpeg_header}
 export ld_flags := -L ${netpbm_library} -L ${jpeg_library} -Wl,-rpath '../../codec/release' -lnetpbm -Wl,-rpath '../../codec/release' -ljpeg -lSDL2 -lSDL2main -lGL -lGLEW -lX11 -lm
 
-all: game
+all: game2d game3d
 
-Surface.o: src/2D/Surface.cpp
-	g++ ${cpp_flags} -c src/2D/Surface.cpp -o build/Surface.o
+Surface2d.o: src/2D/Surface.cpp
+	g++ ${cpp_flags} -c src/2D/Surface.cpp -o build/Surface2d.o
 
-Renderer.o: src/2D/Renderer.cpp
-	g++ ${cpp_flags} -c src/2D/Renderer.cpp -o build/Renderer.o
+Renderer2d.o: src/2D/Renderer.cpp
+	g++ ${cpp_flags} -c src/2D/Renderer.cpp -o build/Renderer2d.o
+
+Surface3d.o: src/3D/Surface.cpp
+	g++ ${cpp_flags} -c src/3D/Surface.cpp -o build/Surface3d.o
+
+Renderer3d.o: src/3D/Renderer.cpp
+	g++ ${cpp_flags} -c src/3D/Renderer.cpp -o build/Renderer3d.o
 
 Image.o: src/2D/Image.cpp
 	g++ ${cpp_flags} -c src/2D/Image.cpp -o build/Image.o
+
+Shape.o: src/3D/Shape.cpp
+	g++ ${cpp_flags} -c src/3D/Shape.cpp -o build/Shape.o
 
 Input.o: src/Input/Input.cpp
 	g++ ${cpp_flags} -c src/Input/Input.cpp -o build/Input.o
@@ -24,8 +33,11 @@ Input.o: src/Input/Input.cpp
 Main.o: src/Main.cpp
 	g++ ${cpp_flags} -c src/Main.cpp -o build/Main.o
 
-game: Input.o Image.o Animation.o Video.o Renderer.o Surface.o Main.o
-	g++ ${cpp_flags} -o release/game2d build/Input.o build/Image.o build/Renderer.o build/Surface.o build/Main.o ${ld_flags}
+game2d: Input.o Image.o Animation.o Video.o Renderer.o Surface.o Main.o
+	g++ ${cpp_flags} -o release/game2d build/Input.o build/Image.o build/Renderer2d.o build/Surface2d.o build/Main.o ${ld_flags}
+
+game3d: Input.o Image.o Animation.o Video.o Renderer.o Surface.o Main.o
+	g++ ${cpp_flags} -o release/game3d build/Input.o build/Image.o build/Renderer3d.o build/Surface3d.o build/Main.o ${ld_flags}
 
 clean:
 	rm build/*.o
