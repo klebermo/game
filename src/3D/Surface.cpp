@@ -1,6 +1,6 @@
-#include "Surface.h"
+#include "Surface.hpp"
 
-Surface::Surface(string windows_title, int width, int height) {
+Surface::Surface(std::string windows_title, int width, int height) {
   this->width = width;
   this->height = height;
 }

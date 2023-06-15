@@ -30,15 +30,19 @@ Shape.o: src/3D/Shape.cpp
 Input.o: src/Input/Input.cpp
 	g++ ${cpp_flags} -c src/Input/Input.cpp -o build/Input.o
 
-Main.o: src/Main.cpp
-	g++ ${cpp_flags} -c src/Main.cpp -o build/Main.o
+main2d.o: src/main2d.cpp
+	g++ ${cpp_flags} -c src/main2d.cpp -o build/main2d.o
 
-game2d: Input.o Image.o Animation.o Video.o Renderer.o Surface.o Main.o
-	g++ ${cpp_flags} -o release/game2d build/Input.o build/Image.o build/Renderer2d.o build/Surface2d.o build/Main.o ${ld_flags}
+main3d.o: src/main3d.cpp
+	g++ ${cpp_flags} -c src/main3d.cpp -o build/main3d.o
 
-game3d: Input.o Image.o Animation.o Video.o Renderer.o Surface.o Main.o
-	g++ ${cpp_flags} -o release/game3d build/Input.o build/Image.o build/Renderer3d.o build/Surface3d.o build/Main.o ${ld_flags}
+game2d: Input.o Image.o Renderer2d.o Surface2d.o main2d.o
+	g++ ${cpp_flags} -o release/game2d build/Input.o build/Image.o build/Renderer2d.o build/Surface2d.o build/main2d.o ${ld_flags}
+
+game3d: Input.o Image.o Renderer3d.o Surface3d.o main3d.o
+	g++ ${cpp_flags} -o release/game3d build/Input.o build/Image.o build/Renderer3d.o build/Surface3d.o build/main3d.o ${ld_flags}
 
 clean:
 	rm build/*.o
 	rm release/game2d
+	rm release/game3d

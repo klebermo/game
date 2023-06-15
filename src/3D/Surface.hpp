@@ -1,16 +1,16 @@
 #ifndef SURFACE3D_H
 #define SURFACE3D_H
 
-#include "Renderer.h"
+#include "Renderer.hpp"
 
 class Surface {
 private:
-  Window window;
+  SDL_Window* window;
   int width;
   int height;
   Renderer * renderer;
 public:
-  Surface(string windows_title, int width, int height);
+  Surface(std::string windows_title, int width, int height);
   ~Surface();
 
   void loop();
