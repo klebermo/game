@@ -13,7 +13,7 @@ public:
     ~Renderer();
 
     void setImage(float * vertices, int width, int height);
-    void drawFrame(SDL_Window * window);
+    void drawFrame();
 };
 
 #endif

@@ -4,8 +4,11 @@ export netpbm_library := ../codec/release
 export jpeg_header := ../codec/JPEG/include
 export jpeg_library := ../codec/release
 
-export cpp_flags := -Wall -pedantic -g -fsanitize=address  -I ${netpbm_header} -I ${jpeg_header}
-export ld_flags := -L ${netpbm_library} -L ${jpeg_library} -Wl,-rpath '../../codec/release' -lnetpbm -Wl,-rpath '../../codec/release' -ljpeg -lSDL2 -lSDL2main -lGL -lGLEW -lX11 -lm
+export png_header := ../codec/PNG/include
+export png_library := ../codec/release
+
+export cpp_flags := -Wall -pedantic -g -fsanitize=address  -I ${netpbm_header} -I ${jpeg_header} -I {png_header}
+export ld_flags := -L ${netpbm_library} -Wl,-rpath '../../codec/release' -lnetpbm -L ${jpeg_library} -Wl,-rpath '../../codec/release' -ljpeg -L {png_library} -Wl,-rpath '../../codec/release' -lpng -lGL -lGLEW -lm
 
 all: game2d game3d
 

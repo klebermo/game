@@ -9,90 +9,86 @@ int main(int argc, char ** argv) {
         return 0;
     }
 
-    if (SDL_Init(SDL_INIT_VIDEO) >= 0) {
-        std::string file_name(argv[1]);
-        std::string extension;
+    std::string file_name(argv[1]);
+    std::string extension;
+    
+    std::stringstream ss(file_name);
+    while(getline(ss, extension, '.'));
+
+    if(extension == "pbm") {
+        Bitmap image;
+        image.read_file(file_name);
         
-        std::stringstream ss(file_name);
-        while(getline(ss, extension, '.'));
+        std::vector<float> vertices_vec = image.toArray();
+        float *vertices = vertices_vec.data();
+        int width = image.getWidth();
+        int height = image.getHeight();
 
-        if(extension == "pbm") {
-            Bitmap image;
-            image.read_file(file_name);
-            
-            std::vector<float> vertices_vec = image.toArray();
-            float *vertices = vertices_vec.data();
-            int width = image.getWidth();
-            int height = image.getHeight();
+        Surface * view = new Surface("image: "+file_name, width, height);
+        view->getRenderer()->setImage(vertices, width, height);
+        view->loop();
 
-            Surface * view = new Surface("image: "+file_name, width, height);
-            view->getRenderer()->setImage(vertices, width, height);
-            view->loop();
+        delete vertices;
+        delete view;
+    }
+    
+    if(extension == "pgm") {
+        Graymap image;
+        image.read_file(file_name);
 
-            delete vertices;
-            delete view;
-        }
-        
-        if(extension == "pgm") {
-            Graymap image;
-            image.read_file(file_name);
+        std::vector<float> vertices_vec = image.toArray();
+        float *vertices = vertices_vec.data();
+        int width = image.getWidth();
+        int height = image.getHeight();
 
-            std::vector<float> vertices_vec = image.toArray();
-            float *vertices = vertices_vec.data();
-            int width = image.getWidth();
-            int height = image.getHeight();
+        Surface * view = new Surface("image: "+file_name, width, height);
+        view->getRenderer()->setImage(vertices, width, height);
+        view->loop();
 
-            Surface * view = new Surface("image: "+file_name, width, height);
-            view->getRenderer()->setImage(vertices, width, height);
-            view->loop();
+        delete vertices;
+        delete view;
+    }
 
-            delete vertices;
-            delete view;
-        }
+    if(extension == "ppm") {
+        Pixmap2 image;
+        image.read_file(file_name);
 
-        if(extension == "ppm") {
-            Pixmap2 image;
-            image.read_file(file_name);
+        std::vector<float> vertices_vec = image.toArray();
+        float *vertices = vertices_vec.data();
+        int width = image.getWidth();
+        int height = image.getHeight();
 
-            std::vector<float> vertices_vec = image.toArray();
-            float *vertices = vertices_vec.data();
-            int width = image.getWidth();
-            int height = image.getHeight();
+        Surface * view = new Surface("image: "+file_name, width, height);
+        view->getRenderer()->setImage(vertices, width, height);
+        view->loop();
 
-            Surface * view = new Surface("image: "+file_name, width, height);
-            view->getRenderer()->setImage(vertices, width, height);
-            view->loop();
+        delete vertices;
+        delete view;
+    }
 
-            delete vertices;
-            delete view;
-        }
+    if(extension == "jpg" || extension == "jpeg") {
+        JPEG image;
+        image.read(file_name);
 
-        if(extension == "jpg" || extension == "jpeg") {
-            Jfif image;
-            image.read(file_name);
+        /*std::vector<float> vertices_vec = image.toArray();
+        float *vertices = vertices_vec.data();
+        int width = image.getWidth();
+        int height = image.getHeight();
 
-            /*std::vector<float> vertices_vec = image.toArray();
-            float *vertices = vertices_vec.data();
-            int width = image.getWidth();
-            int height = image.getHeight();
+        Surface * view = new Surface("image: "+file_name, width, height);
+        view->getRenderer()->setImage(vertices, width, height);
+        view->loop();
 
-            Surface * view = new Surface("image: "+file_name, width, height);
-            view->getRenderer()->setImage(vertices, width, height);
-            view->loop();
+        delete vertices;
+        delete view;*/
+    }
 
-            delete vertices;
-            delete view;*/
-        }
+    if(extension == "png") {
+        //
+    }
 
-        if(extension == "png") {
-            //
-        }
-
-        if(extension == "mp4") {
-            //
-        }
-
-        SDL_Quit();
+    if(extension == "mp4") {
+        //
     }
 
     return 1;
